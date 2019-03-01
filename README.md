@@ -6,7 +6,7 @@ An implementation of paper [《Separation of Manga Line Drawings and Screentones
 
 Results:
 
-![image](https://github.com/Patrickctyyx/Screentone-Removal/results/remove_mask.png)
+![image](https://github.com/Patrickctyyx/Screentone-Removal/blob/master/results/remove_mask.png)
 
 ## Line preserving mask
 
