@@ -5,9 +5,11 @@ import numpy as np
 import scipy.ndimage as nd
 import matplotlib.pyplot as plt
 
+
 def get_ncc(img):  # NCC 是连通域数量
-    _, ncc = label(img, neighbors=8, return_num=True)
+    _, ncc = label(img, connectivity=2, return_num=True)
     return ncc
+
 
 def get_ccc(img, i):
     mask_log_i = get_mask_log(img, i)
@@ -17,6 +19,7 @@ def get_ccc(img, i):
     ncc_i_2 = get_ncc(mask_log_i_2)
 
     return 1 - ncc_i / ncc_i_2
+
 
 def get_stc(img, i):
     mask_log_1 = get_mask_log(img, 1)
@@ -30,6 +33,7 @@ def get_stc(img, i):
 
     return ncc_i / ncc_1 * abs(ncc_i_2 - ncc_i)
 
+
 def get_mask_log(img, i):
     sigma = 0.3 * ((i - 1) * 0.5 - 1) + 0.8
     log = nd.gaussian_laplace(img, sigma)
@@ -41,6 +45,7 @@ def get_mask_log(img, i):
     _, log = cv2.threshold(log, 0, 255, cv2.THRESH_OTSU + cv2.THRESH_BINARY_INV)
 
     return log
+
 
 def screentone_removal(filename):
     # params
