@@ -10,7 +10,7 @@ Results:
 
 ## Line preserving mask
 
-- todo
+Using Flow-based Difference of Gaussian (FDoG) filter, which is detailed illustrated in this [blog](https://ssarcandy.tw/2017/06/26/Coherent-Line-Drawing/).
 
 ## Mask merging for refining line extraction
 
