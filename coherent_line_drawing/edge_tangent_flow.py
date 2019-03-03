@@ -97,7 +97,6 @@ class EdgeTangentFlow:
 
 
 if __name__ == '__main__':
-    # todo: test this module
     etf = EdgeTangentFlow()
     etf.initial_etf('../imgs/kiana.jpg')
     etf.refine_etf(5)
