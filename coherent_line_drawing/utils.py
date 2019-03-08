@@ -2,7 +2,7 @@ import numpy as np
 
 
 def gauss(x, mean, sigma):
-    return np.exp((-(x - mean) * (x - mean)) / (2 * sigma * sigma)) / np.sqrt(np.pi * 2 * sigma * sigma)
+    return np.exp((-(x - mean) ** 2) / (2 * sigma ** 2)) / np.sqrt(np.pi * 2 * sigma ** 2)
 
 
 def make_gauss_vector(sigma):
@@ -15,7 +15,7 @@ def make_gauss_vector(sigma):
             break
 
     gau = [0] * (i + 1)
-    for j in range(1, len(gau)):
+    for j in range(0, len(gau)):
         gau[j] = gauss(j, 0, sigma)
 
     return gau
