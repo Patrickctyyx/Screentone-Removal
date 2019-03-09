@@ -44,7 +44,12 @@ class CoherentLineDrawing:
         self.result = self.binary_thresholding(self.fdog, self.tau)
 
     def combine_image(self):
-        self.original_img = cv2.bitwise_and(self.original_img, self.result)
+        for y in range(self.result.shape[0]):
+            for x in range(self.result.shape[1]):
+                if self.result[y][x] == 0:
+                    self.original_img[y][x] = 0
+
+        self.original_img = cv2.GaussianBlur(self.original_img, (3, 3), 0)
 
     def gradient_dog(self, src, rho, sigma_c):
         dst = np.zeros(src.shape, src.dtype)
@@ -176,9 +181,13 @@ class CoherentLineDrawing:
 
 
 if __name__ == '__main__':
+    import time
+    start = time.time()
     cld = CoherentLineDrawing()
-    cld.read_src('../imgs/kanshan.jpg')
+    cld.read_src('../imgs/sola.jpg')
     cld.gen_cld()
+    end = time.time()
+    print('用时：', end - start)
 
     import matplotlib.pyplot as plt
     plt.imshow(cld.result, 'gray')
