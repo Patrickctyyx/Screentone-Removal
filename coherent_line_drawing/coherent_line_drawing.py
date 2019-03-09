@@ -4,8 +4,6 @@ from utils import make_gauss_vector
 from edge_tangent_flow import EdgeTangentFlow
 
 
-# todo: test this class
-# todo: some parts can be replaced by cv2 functions
 class CoherentLineDrawing:
 
     def __init__(self, size=(300, 300)):
@@ -187,7 +185,7 @@ if __name__ == '__main__':
     cld.read_src('../imgs/sola.jpg')
     cld.gen_cld()
     end = time.time()
-    print('用时：', end - start)
+    print('Time used：' + str(end - start), 's')
 
     import matplotlib.pyplot as plt
     plt.imshow(cld.result, 'gray')
