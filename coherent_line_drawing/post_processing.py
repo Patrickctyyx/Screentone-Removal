@@ -72,13 +72,14 @@ def get_flow_field(flow_field, dis):
     """
 
     RESOLUTION = 10
+    dis = cv2.cvtColor(dis, cv2.COLOR_GRAY2BGR)
 
     for i in range(0, flow_field.shape[0], RESOLUTION):
         for j in range(0, flow_field.shape[1], RESOLUTION):
             v = flow_field[i][j]
             p1 = (j, i)
             p2 = (int(j + v[1] + 5), int(i + v[0] * 5))
-            cv2.arrowedLine(dis, p1, p2, (0, 0, 255), 1, 8, 0, 0.3)
+            cv2.arrowedLine(dis, p1, p2, (255, 0, 0), 1, 8, 0, 0.3)
 
     return dis
 
