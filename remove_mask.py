@@ -1,7 +1,5 @@
 import cv2
 from skimage.measure import label
-import scipy as sp
-import numpy as np
 import scipy.ndimage as nd
 import matplotlib.pyplot as plt
 
@@ -76,6 +74,7 @@ def screentone_removal(filename):
 
     mask_rm = cv2.bitwise_and(get_mask_log(img, i_log), get_mask_log(img, i_base))
     
+    print(i_base)
     print(i_log)
     
     plt.subplot(131)
@@ -89,7 +88,9 @@ def screentone_removal(filename):
     plt.imshow(mask_rm, "gray")
     plt.show()
 
+    return i_log, i_base, mask_rm
+
 
 if __name__ == "__main__":
     # screentone_removal("imgs/15.png")
-    screentone_removal("imgs/kanshan.jpg")
+    i_log, i_base, mask_rm = screentone_removal("mangas/manga4.png")

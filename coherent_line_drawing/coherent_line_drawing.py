@@ -1,12 +1,12 @@
 import cv2
 import numpy as np
-from utils import make_gauss_vector
-from edge_tangent_flow import EdgeTangentFlow
+from coherent_line_drawing.utils import make_gauss_vector
+from coherent_line_drawing.edge_tangent_flow import EdgeTangentFlow
 
 
 class CoherentLineDrawing:
 
-    def __init__(self, size=(300, 300)):
+    def __init__(self, size=(300, 300), sigma_c=None):
         self.SIGMA_RATIO = 1.6
         self.STEPSIZE = 1.0
 
@@ -18,8 +18,12 @@ class CoherentLineDrawing:
 
         self.etf = EdgeTangentFlow(size)
 
-        self.sigma_m = 3.0
-        self.sigma_c = 1.0
+        if sigma_c:
+            self.sigma_c = sigma_c
+        else:
+            self.sigma_c = 1.0  # given by the user
+
+        self.sigma_m = 3.0  # user provided(use default value)
         self.rho = 0.997
         self.tau = 0.8
 
@@ -182,7 +186,7 @@ if __name__ == '__main__':
     import time
     start = time.time()
     cld = CoherentLineDrawing()
-    cld.read_src('../imgs/sola.jpg')
+    cld.read_src('../mangas/manga4.png')
     cld.gen_cld()
     end = time.time()
     print('Time used：' + str(end - start), 's')
