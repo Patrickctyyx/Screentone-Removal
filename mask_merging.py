@@ -14,7 +14,7 @@ def get_final_mask(filename):
     w_dog = i_base - 2
     sigma_c = 0.3 * ((w_dog - 1) * 0.5 - 1) + 0.8
     cld = CoherentLineDrawing(sigma_c=sigma_c)
-    cld.read_src('mangas/manga4.png')
+    cld.read_src(filename)
     cld.gen_cld()
     mask_lp = cld.result
 
