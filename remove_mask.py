@@ -39,7 +39,7 @@ def get_mask_log(img, i):
     log[log < 0] = 0
 
     log = log.astype('uint8')
-    # 返回的第一个值是门槛值
+    # The first value returned is the threshold value
     _, log = cv2.threshold(log, 0, 255, cv2.THRESH_OTSU + cv2.THRESH_BINARY_INV)
 
     return log
@@ -72,7 +72,9 @@ def screentone_removal(filename):
     i_log += 4
     i_base = min(int(i / 2), i_log)
 
-    mask_rm = cv2.bitwise_and(get_mask_log(img, i_log), get_mask_log(img, i_base))
+    # the color is inversed
+    # so this is 'or' instead of 'and' in the paper
+    mask_rm = cv2.bitwise_or(get_mask_log(img, i_log), get_mask_log(img, i_base))
     
     print(i_base)
     print(i_log)
@@ -93,4 +95,4 @@ def screentone_removal(filename):
 
 if __name__ == "__main__":
     # screentone_removal("imgs/15.png")
-    i_log, i_base, mask_rm = screentone_removal("mangas/manga4.png")
+    i_log, i_base, mask_rm = screentone_removal("mangas/manga8.png")
