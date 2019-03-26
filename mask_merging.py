@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import matplotlib.pyplot as plt
 from skimage.measure import label
 
 from remove_mask import screentone_removal
@@ -18,6 +19,10 @@ def get_final_mask(filename):
     cld.gen_cld()
     mask_lp = cld.result
 
+    plt.title('line preserving')
+    plt.imshow(mask_lp, "gray")
+    plt.show()
+
     # combine the two masks through connected components
     mask_comb = cv2.bitwise_or(mask_rm, mask_rm, mask=mask_lp)
     m_final = np.zeros(mask_comb.shape, mask_comb.dtype)
@@ -33,4 +38,13 @@ def get_final_mask(filename):
         if none_zero_num > 0:
             m_final[idx] = 255
 
+    plt.title('merged mask')
+    plt.imshow(m_final, "gray")
+    plt.show()
+
     return m_final
+
+
+if __name__ == '__main__':
+    filename = 'mangas/manga7.png'
+    get_final_mask(filename)
