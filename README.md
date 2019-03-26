@@ -22,7 +22,7 @@ Results:
 
 ![image2](https://github.com/Patrickctyyx/Screentone-Removal/blob/master/results/2_2.jpg)
 
-![image3](https://github.com/Patrickctyyx/Screentone-Removal/blob/master/results/3_3.jpg)
+![image3](https://github.com/Patrickctyyx/Screentone-Removal/blob/master/results/3_2.jpg)
 
 ## Mask merging for refining line extraction
 
