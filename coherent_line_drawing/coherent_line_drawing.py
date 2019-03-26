@@ -43,7 +43,7 @@ class CoherentLineDrawing:
         self.dog = self.gradient_dog(original_img_32fc1, self.rho, self.sigma_c)
         self.fdog = self.flow_dog(self.dog, self.sigma_m)
 
-        self.result = self.binary_thresholding(self.fdog, self.tau)
+        self.result = self.binary_thresholding(self.fdog, self.tau).astype('uint8')
 
     def combine_image(self):
         for y in range(self.result.shape[0]):
